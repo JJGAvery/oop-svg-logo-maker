@@ -1,5 +1,8 @@
 const SVG = require('svg.js');
 const inquirer = require('inquirer');
+const Circle = require('./library/shapes.js');
+const Square = require('./library/shapes.js');
+const Triangle = require('./library/shapes.js');
 const fs = require('fs');
 
 inquirer.prompt([
@@ -24,4 +27,30 @@ inquirer.prompt([
         name: 'shapeColor',
         message: 'What color do you want your shape to be?(color name or hexadecimal number',
     },
-]);
+])
+
+.then(({ textType, colorTextInput, shapeInput, shapeColor }) => {
+    let shape;
+    switch (shapeInput) {
+      case "circle":
+        shape = new Circle();
+        break;
+
+      case "square":
+        shape = new Square();
+        break;
+
+      default:
+        shape = new Triangle();
+        break;
+    }
+    const svg = new SVG();
+    svg.setText(textType, colorTextInput);
+    svg.setShape(shape);
+    svg.setShapeColor(shapeColor);
+    return writeFile("logo.svg", svg.render());
+  })
+  .then(() => {
+    console.log("Created your logo.svg file!");
+  })
+
