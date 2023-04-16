@@ -14,7 +14,8 @@ class Shape {
     drawSvg() {
       switch (this.shapeInput) {
         case "circle":
-          this.svg.circle(80).move(150, 100).fill(this.shapeColor);
+          this.svg.circle(80).move(150, 0).fill(this.shapeColor);
+          this.svg.text(this.textType).center(190, 25).fill(this.colorTextInput);
           break;
 
         case "square":
