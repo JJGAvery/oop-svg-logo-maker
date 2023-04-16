@@ -20,10 +20,12 @@ class Shape {
 
         case "square":
           this.svg.rect(120, 120).move(90, 40).fill(this.shapeColor);
+          this.svg.text(this.textType).center(150, 80).fill(this.colorTextInput);
           break;
 
         default:
           this.svg.polygon("150, 18 244, 182 56, 182").fill(this.shapeColor);
+          this.svg.text(this.textType).center(150, 80).fill(this.colorTextInput);
           break;
       }
       return this.svg;
